@@ -53,12 +53,11 @@ CREATE TABLE public.tasks (
 	- Ajustar las variables de entorno localmente según su configuración:  
         ```plaintext
         # .env
-        DB_URL=jdbc: postgresql://localhost:5432/db_taskmanager
+        DB_URL=jdbc:postgresql://localhost:5432/db_taskmanager
         DB_USERNAME=[Tu nombre de usuario local de Postgres]
         DB_PASSWORD=[Tu contraseña local de postgres]
         PORT=8080
         ```
-        - Sin el espacio entre jdbc: y postgresql:
 4.  Abre la terminal y navega hasta la carpeta  `/backend/ `
 5.  Ejecuta el backend usando `mvn spring-boot:run`.
 
