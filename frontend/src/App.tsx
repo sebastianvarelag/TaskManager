@@ -1,33 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { Route, Routes } from 'react-router-dom'
 import './App.css'
+import { NavbarComponent } from './components/NavbarComponent'
+import { TaskListComponent } from './components/TaskListComponent'
+import { TaskEditComponent } from './components/TaskEditComponent'
+import { FormTaskComponent } from './components/FormTaskComponent'
+import { Toaster } from 'react-hot-toast'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className='bg-secondary min-vh-100 min-vw-100'>
+        <header>
+          <NavbarComponent />
+        </header>
+        <main className='p-4 w-100'>
+          <Routes>
+            <Route path="/" element={<TaskListComponent/>} />
+            <Route path='/new' element={<FormTaskComponent/>} />
+            <Route path='/edit/:taskId' element={<TaskEditComponent/>} />
+          </Routes>
+        </main>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Toaster/>
     </>
   )
 }
