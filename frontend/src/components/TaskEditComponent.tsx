@@ -18,8 +18,10 @@ type TaskParams = {
 export const TaskEditComponent = () => {
   const navigate = useNavigate();
   
+  //Agarramos el ID del param
   const { taskId } = useParams() as TaskParams;
   
+  //Realizamos la misma configuración para la validación de campos
   const { 
     register, 
     handleSubmit, 
@@ -40,6 +42,7 @@ export const TaskEditComponent = () => {
 
 
   useEffect(() => {
+    //Cargamos la tarea
     const loadTask = async () => {
       if (!taskId) {
         navigate('/');
@@ -49,6 +52,7 @@ export const TaskEditComponent = () => {
       try {
         const loadedTask = await taskApi.getTask(+taskId);
 
+        //Luego de cargarla asíncronamente, la seteamos en el form
         reset({
           title: loadedTask.title,
           description: loadedTask.description,
@@ -67,11 +71,11 @@ export const TaskEditComponent = () => {
     setFormState({ isLoading: true, error: null });
 
     try {
-      console.log(data);
+      //Actualizamos la task
       await taskApi.updateTask(taskId, data);
       toast.success('Tarea actualizada correctamente.');
-      reset();
-      navigate('/');
+      reset(); //Limpiamos el form
+      navigate('/'); //Volvemos al inicio
     } catch (error) {
       setFormState({
         isLoading: false,

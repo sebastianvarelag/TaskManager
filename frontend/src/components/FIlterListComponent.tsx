@@ -7,14 +7,19 @@ interface PropsIFilterListComponent {
 }
 
 export const FIlterListComponent = ({onFilter}: PropsIFilterListComponent) => {
+
+  //Estados value (para no usar react-hook-form en este caso)
   const [titleSearch, setTitleSearch] = useState('');
   const [completedSearch, setCompletedSearch] = useState('Selecciona una opción');
 
+
+  //Seteamos los estados en la función que viene de los props
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onFilter(titleSearch, completedSearch);
   };
 
+  //handle para limpiar los filtros
   const handleReset = () => {
     setTitleSearch('');
     setCompletedSearch('Todos');

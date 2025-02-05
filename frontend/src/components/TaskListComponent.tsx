@@ -13,9 +13,9 @@ export const TaskListComponent = () => {
 	const [taskData, setTaskData] = useState<Task[]>([]);
 	const [filteredTasks, setFilteredTasks] = useState<Task[]>([]);
 
-
   const fetchTasks = async () => {
-    try {
+		try {
+			//Traemos la data
       const tasks = await taskApi.getTasks();
       setTaskData(tasks);
       setFilteredTasks(tasks);
@@ -31,22 +31,25 @@ export const TaskListComponent = () => {
 	const handleFilter = (title: string, completed: string) => {
     let filtered = [...taskData];
 
-    // Filtrar por título
+    // Filtrar por 'título'
     if (title) {
       filtered = filtered.filter(task => 
         task.title.toLowerCase().includes(title.toLowerCase())
       );
     }
 
+		// Filtrar por 'todos'
     if (completed !== 'Todos') {
       filtered = filtered.filter(task => 
         completed === 'Completada' ? task.completed : !task.completed
       );
     }
 
+		//Seteamos los task filtrados
     setFilteredTasks(filtered);
   };
 
+	//Método para eliminar tarea con el id
 	const handleDelete = async (id: string) => {
 		try {
 			await taskApi.deleteTask(id);
@@ -58,6 +61,7 @@ export const TaskListComponent = () => {
 		}
 	};
 
+	//Método para actualizar el estado de la tarea con el id
 	const handleToggle = async (id: string) => {
 		try {
 			await taskApi.toggleComplete(id);
@@ -70,7 +74,10 @@ export const TaskListComponent = () => {
 	};
 
 	const handleEdit = async (id: string, e: React.MouseEvent) => {
-		e.stopPropagation();
+		// Esto lo puse para evitar que al dar click acá, afecte al completed en general
+		// Ya que al dar click en la tarea también se actualiza el toggle.
+		e.stopPropagation(); 
+		
 		navigate(`/edit/${id}`);
 	}
 

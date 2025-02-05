@@ -35,10 +35,13 @@ export const FormTaskComponent = () => {
   const onSubmit = async (data: CreateTaskDTO) => {
     setFormState({ isLoading: true, error: null });
 
+    //Llamada de la api que crea el task
     try {
       await taskApi.createTask(data);
       toast.success('Tarea creada correctamente');
+      //Acá limpiamos el formulario
       reset();
+      // Volvemos a la pantalla principal
       navigate('/');
     } catch (error) {
       setFormState({
