@@ -1,5 +1,6 @@
 package com.example.task_manager.service;
 
+import com.example.task_manager.exceptions.ResourceNotFoundException;
 import com.example.task_manager.model.Task;
 import com.example.task_manager.repository.TaskRepository;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,13 @@ public class TaskService {
 
   public void deleteById(Integer id) {
     taskRepository.deleteById(id);
+  }
+
+  public Task toggleComplete(Integer id) {
+    Task task = taskRepository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Task not found with id: " + id));
+    task.setCompleted(!task.isCompleted());
+    return taskRepository.save(task);
   }
 
   public List<Task> searchByTitle(String title) {

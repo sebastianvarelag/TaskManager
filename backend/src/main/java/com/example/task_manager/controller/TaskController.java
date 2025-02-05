@@ -2,6 +2,7 @@ package com.example.task_manager.controller;
 
 import com.example.task_manager.model.Task;
 import com.example.task_manager.service.TaskService;
+
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -47,5 +48,10 @@ public class TaskController {
     @DeleteMapping("/{id}")
     public void deleteTask(@PathVariable Integer id) {
         taskService.deleteById(id);
+    }
+
+    @PatchMapping("/{id}/toggle")
+    public Task toggleTaskComplete(@PathVariable Integer id) {
+        return taskService.toggleComplete(id);
     }
 }
