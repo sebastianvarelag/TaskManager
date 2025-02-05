@@ -17,7 +17,8 @@ Back-end deploy: https://taskmanager-production-sv.up.railway.app/api
   - PostgreSQL
   - Hibernate / JPA
 - **Frontend**
-  - React 
+  - React
+  - Vite
   - Bootstrap 5
   
 ## Configuración del Entorno
@@ -41,25 +42,26 @@ Back-end deploy: https://taskmanager-production-sv.up.railway.app/api
 2. Crear una base de datos en PostgreSQL llamada 'db_taskmanager' y ejecuta el siguiente script:
 ``` sql
 CREATE TABLE public.tasks (
-		id serial4 NOT NULL,
-		title varchar(20) NOT NULL,
-		description varchar(100) NULL,
-		completed bool DEFAULT false NULL
+	id serial4 NOT NULL,
+	title varchar(20) NOT NULL,
+	description varchar(100) NULL,
+	completed bool DEFAULT false NULL
 );
 ```
 3.  Configura el proyecto con las variables de entorno locales. Para esto hicimos uso del dotEnv.
 	- Crea un archivo .env en la carpeta raíz de backend.
 	- Ajustar las variables de entorno localmente según su configuración:  
-
-		````ini
-# .env
-DB_URL=jdbc: postgresql://localhost:5432/db_taskmanager
-DB_USERNAME=[Tu nombre de usuario local de Postgres]
-DB_PASSWORD=[Tu contraseña local de postgres]
-PORT=8080````
-		Sin el espacio entre jdbc: y postgresql:
+        ```plaintext
+        # .env
+        DB_URL=jdbc: postgresql://localhost:5432/db_taskmanager
+        DB_USERNAME=[Tu nombre de usuario local de Postgres]
+        DB_PASSWORD=[Tu contraseña local de postgres]
+        PORT=8080
+        ```
+        - Sin el espacio entre jdbc: y postgresql:
 4.  Abre la terminal y navega hasta la carpeta  `/backend/ `
 5.  Ejecuta el backend usando `mvn spring-boot:run`.
+
 
 #### Frontend
 
@@ -74,10 +76,11 @@ PORT=8080````
 
 4.  Configura el proyecto con las variables de entorno de Vite
 	- Crea un archivo .env en la carpeta raíz de frontend
-	
-		````ini
-# .env
-VITE_API_URL=http://localhost:8080/api````
+        ```plaintext
+        # .env
+        VITE_API_URL=http://localhost:8080/api    
+        ```
+
 
 4. Por último inicial el servidor local del frontend con el comando `npm run dev`.
 
