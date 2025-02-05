@@ -1,50 +1,89 @@
-# React + TypeScript + Vite
+> Gestor de Tareas - Prueba Técnica | Sebastián Varela
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Descripción
+Solución para la primera prueba técnica de INFORMA Colombia para el puesto Desarrollador Full Stack Junior. Este proyecto consiste en crear un gestor de tareas en React con consumo de APIs RESTful usando Java como backend
 
-Currently, two official plugins are available:
+## Links
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Front-end deploy: https://task-manager-sv.vercel.app/
 
-## Expanding the ESLint configuration
+Back-end deploy: https://taskmanager-production-sv.up.railway.app/api
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Tecnologías
 
-- Configure the top-level `parserOptions` property like this:
+- **Backend**
+  - Java 17 
+  - Spring Boot 3 
+  - PostgreSQL
+  - Hibernate / JPA
+- **Frontend**
+  - React 
+  - Bootstrap 5
+  
+## Configuración del Entorno
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Requisitos del Sistema
+
+- Java 17
+- Node.js
+- PostgreSQL
+- Maven
+
+### Instrucciones de Configuración Local
+
+#### Backend
+
+1.  Clonar el repositorio
+  ```sh
+    git clone https://github.com/sebastianvarelag/TaskManager.git
+  ```
+
+2. Crear una base de datos en PostgreSQL llamada 'db_taskmanager' y ejecuta el siguiente script:
+``` sql
+CREATE TABLE public.tasks (
+		id serial4 NOT NULL,
+		title varchar(20) NOT NULL,
+		description varchar(100) NULL,
+		completed bool DEFAULT false NULL
+);
 ```
+3.  Configura el proyecto con las variables de entorno locales. Para esto hicimos uso del dotEnv.
+	- Crea un archivo .env en la carpeta raíz de backend.
+	- Ajustar las variables de entorno localmente según su configuración:  
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+		````ini
+# .env
+DB_URL=jdbc: postgresql://localhost:5432/db_taskmanager
+DB_USERNAME=[Tu nombre de usuario local de Postgres]
+DB_PASSWORD=[Tu contraseña local de postgres]
+PORT=8080````
+		Sin el espacio entre jdbc: y postgresql:
+4.  Abre la terminal y navega hasta la carpeta  `/backend/ `
+5.  Ejecuta el backend usando `mvn spring-boot:run`.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+#### Frontend
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+1.  Clonar el repositorio (Si no lo has hecho previamente)
+  ```sh
+    git clone https://github.com/sebastianvarelag/TaskManager.git
+  ```
+ 
+2. Abre la terminal y navega hasta la carpeta `/frontend/`
+
+3. Instala las dependencias del frontend con `npm install`.
+
+4.  Configura el proyecto con las variables de entorno de Vite
+	- Crea un archivo .env en la carpeta raíz de frontend
+	
+		````ini
+# .env
+VITE_API_URL=http://localhost:8080/api````
+
+4. Por último inicial el servidor local del frontend con el comando `npm run dev`.
+
+## Autor
+
+👨🏻‍💻 **Sebastián Varela Giraldo**
+
+- Linkedin: [Linkedin](https://www.linkedin.com/in/sebastianvarelag/)
+- GitHub: [@sebastianvarelag](https://github.com/sebastianvarelag)
