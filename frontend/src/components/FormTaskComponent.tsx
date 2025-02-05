@@ -63,12 +63,6 @@ export const FormTaskComponent = () => {
       
       <h3>Añadir nueva tarea</h3>
 
-      {formState.error && (
-        <div className="alert alert-danger" role="alert">
-          {formState.error}
-        </div>
-      )}
-
       <form onSubmit={handleSubmit(onSubmit)} noValidate style={{ maxWidth: '400px' }}>
         <div className="mb-3">
           <label htmlFor="title" className="form-label">Título</label>
