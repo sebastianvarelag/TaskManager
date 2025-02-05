@@ -133,7 +133,7 @@ export const FormTaskComponent = () => {
 
         <button 
           type="submit" 
-          className="btn btn-secondary"
+          className="btn btn-primary"
           disabled={formState.isLoading}
         >
           {formState.isLoading ? 'Cargando...' : 'Crear Tarea'}

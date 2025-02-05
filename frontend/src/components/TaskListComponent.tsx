@@ -94,10 +94,10 @@ export const TaskListComponent = () => {
 				</Link>
 			</div>
 
-			<div className="list-group" style={{ maxWidth: '500px' }}>
+				<div id='task-list' className="list-group w-25">
 				{
 					filteredTasks.length === 0 ? (
-						<div className='alert alert-primary'>
+						<div className='alert alert-primary w-100'>
 							No se encontraron tareas con los filtros que seleccionó
 						</div>
 					)
@@ -105,7 +105,7 @@ export const TaskListComponent = () => {
 					<div
 						key={task.id}
 						className={`list-group-item list-group-item-action ${task.completed ? 'list-group-item-dark' : ''}`} 
-            onClick={() => handleToggle(task.id)}
+						onClick={() => handleToggle(task.id)}
 					>
 						<div className="d-flex w-100 justify-content-between align-items-center">
 							<div>
