@@ -16,11 +16,14 @@ body{
 }
 
 #task-list{
-  min-width: 360px;
+  max-width: 650px;
 }
 
+
 @media screen and (max-width: 768px) {
-  .list-group{
-    width: 100% !important;
-  }
+  #task-list{
+    min-width: 100%;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  } 
 }
