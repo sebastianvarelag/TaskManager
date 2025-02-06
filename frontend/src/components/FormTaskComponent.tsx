@@ -55,7 +55,10 @@ export const FormTaskComponent = () => {
   return (
     <>
       <div className="mb-4">
-        <Link to={'/'} className="text-white text-decoration-none">
+        <Link to={'/'} 
+          className="text-white text-decoration-none"
+          onClick={() =>reset()}
+          >
           <ChevronLeft width={20} height={20} />
           Regresar
         </Link>
